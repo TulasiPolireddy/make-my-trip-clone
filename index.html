@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TripNest - Travel Booking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <a href="#" class="logo">✈ Trip<span>Nest</span></a>
+
+  <nav id="navigation">
+    <a href="#booking">Flights</a>
+    <a href="#booking" data-service="hotels">Hotels</a>
+    <a href="#booking" data-service="holidays">Holidays</a>
+    <a href="#booking" data-service="buses">Buses</a>
+    <a href="#booking" data-service="cabs">Cabs</a>
+    <a href="#my-trips">My Trips</a>
+  </nav>
+
+  <button id="loginButton" class="login-btn">Login / Sign up</button>
+  <button id="menuButton" class="menu-btn">☰</button>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>
+    <h1>Explore the world.<br><span>One trip at a time.</span></h1>
+    <p>Discover flights, hotels and unforgettable holiday experiences.</p>
+  </div>
+
+  <div class="booking-box" id="booking">
+    <div class="tabs">
+      <button class="tab active" data-service="flights">✈ Flights</button>
+      <button class="tab" data-service="hotels">▤ Hotels</button>
+      <button class="tab" data-service="holidays">🏝 Holidays</button>
+      <button class="tab" data-service="buses">▰ Buses</button>
+      <button class="tab" data-service="cabs">🚕 Cabs</button>
+    </div>
+
+    <form id="searchForm">
+      <div id="tripTypes">
+        <label><input type="radio" name="trip" value="round" checked> Round trip</label>
+        <label><input type="radio" name="trip" value="oneway"> One way</label>
+      </div>
+
+      <div class="search-grid">
+        <label class="field">
+          <span id="fromLabel">FROM</span>
+          <input id="from" value="Hyderabad" required>
+        </label>
+
+        <button type="button" id="swapButton" class="swap">⇄</button>
+
+        <label class="field">
+          <span id="toLabel">TO</span>
+          <input id="to" value="Delhi" required>
+        </label>
+
+        <label class="field">
+          <span id="departLabel">DEPARTURE</span>
+          <input id="depart" type="date" required>
+        </label>
+
+        <label class="field" id="returnField">
+          <span id="returnLabel">RETURN</span>
+          <input id="return" type="date">
+        </label>
+
+        <label class="field">
+          <span id="travellerLabel">TRAVELLERS</span>
+          <select id="travellers">
+            <option value="1">1 Traveller</option>
+            <option value="2" selected>2 Travellers</option>
+            <option value="3">3 Travellers</option>
+            <option value="4">4 Travellers</option>
+            <option value="5">5 Travellers</option>
+            <option value="6">6 Travellers</option>
+          </select>
+        </label>
+      </div>
+
+      <button class="search-btn" type="submit">Search your trip →</button>
+      <p class="demo-note">Demo website: fares and bookings are illustrative.</p>
+    </form>
+  </div>
+</section>
+
+<section class="benefits">
+  <div><strong>✦ Great choices</strong><p>Explore different travel options</p></div>
+  <div><strong>₹ Budget friendly</strong><p>Find trips for your budget</p></div>
+  <div><strong>♡ Your favourites</strong><p>Save trips you love</p></div>
+  <div><strong>✓ Easy planning</strong><p>Plan your next adventure</p></div>
+</section>
+
+<section class="section" id="resultsSection" hidden>
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">SEARCH RESULTS</p>
+      <h2 id="resultsTitle">Available options</h2>
+      <p id="resultsSubtitle"></p>
+    </div>
+    <button id="clearResults" class="secondary-btn">Clear</button>
+  </div>
+
+  <div class="results-toolbar">
+    <span id="resultCount"></span>
+    <label>Sort:
+      <select id="sort">
+        <option value="recommended">Recommended</option>
+        <option value="low">Price: low to high</option>
+        <option value="high">Price: high to low</option>
+        <option value="rating">Rating</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="results-layout">
+    <aside class="filters">
+      <h3>Filters</h3>
+      <label>Maximum price: <b id="priceLabel">₹25,000</b></label>
+      <input type="range" id="priceFilter" min="500" max="25000"
+             step="500" value="25000">
+      <label class="check"><input type="checkbox" id="ratingFilter"> Rating 4.5+</label>
+      <label class="check"><input type="checkbox" id="savedFilter"> Saved only</label>
+      <button id="resetFilters" class="secondary-btn">Reset filters</button>
+    </aside>
+    <div id="results" class="results-list"></div>
+  </div>
+</section>
+
+<section class="section" id="offers">
+  <p class="eyebrow">TRAVEL SMARTER</p>
+  <h2>Offers & inspiration</h2>
+
+  <div class="offer-grid">
+    <article class="offer offer-blue">
+      <span>FLIGHT DEALS</span>
+      <h3>Ready for take-off?</h3>
+      <p>Explore sample domestic fares from ₹2,499.</p>
+      <button data-service="flights">Explore flights →</button>
+    </article>
+
+    <article class="offer offer-orange">
+      <span>HOTEL DEALS</span>
+      <h3>Check in. Chill out.</h3>
+      <p>Find stays for your next getaway.</p>
+      <button data-service="hotels">Explore hotels →</button>
+    </article>
+
+    <article class="offer offer-purple">
+      <span>HOLIDAY PACKAGES</span>
+      <h3>Out of office!</h3>
+      <p>Discover new places and experiences.</p>
+      <button data-service="holidays">Explore holidays →</button>
+    </article>
+  </div>
+  <p class="demo-note">Promotions shown here are examples, not redeemable offers.</p>
+</section>
+
+<section class="section" id="destinations">
+  <p class="eyebrow">FIND YOUR HAPPY PLACE</p>
+  <h2>Popular destinations</h2>
+
+  <div class="destination-grid">
+    <button class="destination" data-destination="Goa">
+      <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=700&q=80" alt="Goa beach">
+      <span><b>Goa</b><small>Beaches & sunsets</small></span>
+    </button>
+
+    <button class="destination" data-destination="Manali">
+      <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=700&q=80" alt="Mountain destination">
+      <span><b>Manali</b><small>Mountain escape</small></span>
+    </button>
+
+    <button class="destination" data-destination="Jaipur">
+      <img src="https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=700&q=80" alt="Jaipur palace">
+      <span><b>Jaipur</b><small>Culture & heritage</small></span>
+    </button>
+
+    <button class="destination" data-destination="Kerala">
+      <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=700&q=80" alt="Kerala backwaters">
+      <span><b>Kerala</b><small>Nature & backwaters</small></span>
+    </button>
+  </div>
+</section>
+
+<section class="section" id="wishlist">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">YOUR SHORTLIST</p>
+      <h2>My Wishlist <span id="wishlistCount">(0)</span></h2>
+    </div>
+  </div>
+  <div id="wishlistItems" class="wishlist-grid">
+    <p class="empty-message">Save a flight, hotel or holiday to see it here.</p>
+  </div>
+</section>
+
+<section class="section trips-section" id="my-trips">
+  <p class="eyebrow">YOUR TRAVEL CORNER</p>
+  <h2>My Trips</h2>
+  <p class="section-description">View the demo bookings saved in this browser.</p>
+  <div id="trips">
+    <p class="empty-message">Your booked demo trips will appear here.</p>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div>
+    <p class="eyebrow">TRAVEL INSPIRATION</p>
+    <h2>Get inspired for your next trip.</h2>
+    <p>Sign up for our sample travel newsletter.</p>
+  </div>
+  <form id="newsletterForm">
+    <input type="email" id="newsletterEmail" placeholder="Your email address" required>
+    <button type="submit">Subscribe →</button>
+  </form>
+</section>
+
+<footer>
+  <a class="logo" href="#">✈ Trip<span>Nest</span></a>
+  <p>An independent travel website demo. Not affiliated with MakeMyTrip.</p>
+  <p>© <span id="year"></span> TripNest</p>
+</footer>
+
+<div id="modalBackdrop" class="modal-backdrop" hidden>
+  <section class="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="closeModal" aria-label="Close">×</button>
+    <div id="modalContent"></div>
+  </section>
+</div>
+
+<div id="toast" class="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>
